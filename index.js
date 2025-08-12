@@ -58,6 +58,10 @@ const notes = [
   {
     title: 'What is `git remote add origin`?',
     content: 'This command connects your local Git repository to a remote one (like on GitHub). `remote` manages connections, `add` creates a new one, and `origin` is the standard nickname for your remote URL.'
+  },  
+  {
+    title: '`git add --all` vs `git add .`',
+    content: 'In modern Git, they are very similar. The key difference is scope: `git add .` stages changes from the current directory down, while `git add --all` (or -A) stages all changes in the entire repository, regardless of where you run the command. Using `--all` is generally safer and more explicit.'
   }
 ];
 
@@ -110,6 +114,8 @@ app.get('/revision', (req, res) => {
     </head>
     <body>
       <div class="container">
+      <a href="https://docs.github.com/en/actions"/>
+      <a href="https://github.com/actions"/>
         <h1>Revision Page</h1>
         <p>Here are all the notes from the site content.</p>
         <hr>
