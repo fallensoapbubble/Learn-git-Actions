@@ -3,7 +3,7 @@
  */
 const utils = {
   /**
-   * Capitalizes the first letter of a string.
+   * Capitalizes the first letter of a strings.
    * @param {string} str The string to capitalize.
    * @returns {string} The capitalized string.
    * @throws {Error} If the input is not a string or is empty.
