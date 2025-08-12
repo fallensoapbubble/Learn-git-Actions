@@ -42,6 +42,22 @@ const notes = [
   {
     title: 'What are ESLint and Jest?',
     content: 'ESLint is a linter that analyzes code to find and fix stylistic errors and potential bugs. Jest is a testing framework used to write and run tests to ensure that your code works as expected.'
+  },
+  {
+    title: 'What is `git branch -M`?',
+    content: 'This command renames the current branch. The `-M` is a shortcut for `--move --force`. It\'s most commonly used to rename the default `master` branch to `main` after initializing a repository.'
+  },
+  {
+    title: 'What is `git checkout -b`?',
+    content: 'This is a shortcut command that creates a new branch and immediately switches to it. It\'s used daily to start work on a new feature or bugfix in an isolated environment.'
+  },
+  {
+    title: 'The `git add` and `git commit` Workflow',
+    content: 'This is the two-step process for saving changes. `git add <file>` moves your changes to a "staging area". `git commit -m "message"` takes everything in the staging area and saves it permanently to your project\'s history with a descriptive message.'
+  },
+  {
+    title: 'What is `git remote add origin`?',
+    content: 'This command connects your local Git repository to a remote one (like on GitHub). `remote` manages connections, `add` creates a new one, and `origin` is the standard nickname for your remote URL.'
   }
 ];
 
