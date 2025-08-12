@@ -53,5 +53,7 @@ const utils = {
 };
 
 // To use this in a Node.js environment with Jest, you need to export it.
-// If you were running this in a browser, you wouldn't need the module.exports line.
-module.exports = utils;
+// If you were running this in a browser, you wouldn't need the module.exports line..
+
+
+export default utils;
