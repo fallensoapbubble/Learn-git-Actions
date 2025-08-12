@@ -1,6 +1,9 @@
 // utils.test.js
-const { capitalize, arraySum, formatDate } = require('./utils'); // Assuming the library is in utils.js
+import utils from './utils.js';
 
+capitalize = utils.capitalize;
+arraySum = utils.arraySum;
+formatDate=utils.formatDate;
 // Test suite for the capitalize function
 describe('capitalize', () => {
   test('should capitalize the first letter of a standard string', () => {
