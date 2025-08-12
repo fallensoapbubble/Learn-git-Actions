@@ -24,7 +24,7 @@ const utils = {
    */
   arraySum: (arr) => {
     if (!Array.isArray(arr)) {
-      throw new Error('Input must be an array.');
+      throw new Error('Input must be an array!!');
     }
     return arr.reduce((sum, current) => {
       if (typeof current === 'number' && !isNaN(current)) {
