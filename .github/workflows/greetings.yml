@@ -58,8 +58,9 @@ jobs:
 
       # Step 3: Add a comment to the commit when a push is made to the main branch.
       # The 'if' condition ensures this step only runs for 'push' events on the 'main' branch.
+      # CORRECTED: Changed 'comment:' to 'body:' to match the action's required input.
     - name: Comment on push to main
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: peter-evans/commit-comment@v2
       with:
-        comment: A new commit was pushed to the main branch.
+        body: A new commit was pushed to the main branch.
