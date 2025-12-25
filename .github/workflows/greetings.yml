@@ -1,66 +1,35 @@
-# A friendly name for the workflow, which will be displayed in the GitHub Actions tab.
-name: Comprehensive Greeter
+name: Hello Everyone!
 
-# This section defines the events that will trigger the workflow to run.
 on:
-  # Triggers the workflow on push events to the main branch.
-  push:
-    branches:
-      - main
+  # Schedule the workflow to run daily at midnight UTC
+  schedule:
+    - cron: '0 0 * * *'
+  # Allows you to run this workflow manually from the Actions tab for testing
+  workflow_dispatch:
 
-  # Triggers the workflow on pull request events.
-  pull_request:
-    # 'opened': when a new PR is created.
-    # 'synchronize': when new commits are pushed to the PR's branch.
-    types: [opened, synchronize]
+permissions:
+  contents: write
 
-  # Triggers the workflow when a new issue is 'opened'.
-  issues:
-    types: [opened]
-
-# Defines the jobs that will run as part of this workflow.
 jobs:
-  # A unique identifier for the job.
-  add-comment:
-    # Specifies the type of virtual machine to run the job on.
+  update-streak:
     runs-on: ubuntu-latest
-
-    # Sets the permissions for the GITHUB_TOKEN for this job.
-    permissions:
-      issues: write
-      pull-requests: write
-      # This permission is required to comment on commits.
-      contents: write
-
-    # A sequence of tasks that will be executed as part of the job.
+    
     steps:
-      # Step 1: Add a comment to newly opened issues.
-      # The 'if' condition ensures this step only runs for 'issues' events.
-    - name: Comment on new issue
-      if: github.event_name == 'issues'
-      uses: peter-evans/create-or-update-comment@v4
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-          Thank you for opening this issue!
-          Our team will review it shortly.
+      # Step 1: Checkout the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      # Step 2: Add a comment to new or updated pull requests.
-      # The 'if' condition ensures this step only runs for 'pull_request' events.
-    - name: Comment on pull request
-      if: github.event_name == 'pull_request'
-      uses: peter-evans/create-or-update-comment@v4
-      with:
-        issue-number: ${{ github.event.pull_request.number }}
-        body: |
-          Thank you for the pull request!
-          We'll review your changes and get back to you soon.
-
-      # Step 3: Add a comment to the commit when a push is made to the main branch.
-      # The 'if' condition ensures this step only runs for 'push' events on the 'main' branch.
-      # CORRECTED: Changed 'comment:' to 'body:' to match the action's required input.
-    - name: Comment on push to main
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      uses: peter-evans/commit-comment@v2
-      with:
-        body: A new commit was pushed to the main branch.
+      # Step 2: Make a small change to a file
+      - name: Update Streak File
+        run: |
+          date > streak-log.txt
+          
+      # Step 3: Commit and Push the change
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add streak-log.txt
+          # The '|| exit 0' ensures the workflow doesn't fail if there's nothing new to commit
+          git commit -m "Keep the streak alive: $(date)" || exit 0
+          git push
